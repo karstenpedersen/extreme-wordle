@@ -30,8 +30,6 @@
 
 <div class="grid-container">
 	{#if gameState === 'game'}
-		<p>{$correctWord}</p>
-
 		<Grid />
 		<Keyboard
 			on:winner={(e) => {
