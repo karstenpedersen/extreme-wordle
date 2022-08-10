@@ -29,5 +29,15 @@
 		color: var(--color-white);
 		background-color: var(--color-gray);
 		font-weight: 700;
+		cursor: pointer;
+	}
+
+	button:hover {
+		color: white;
+		background-color: var(--color-magic);
+	}
+
+	button:focus {
+		outline: none;
 	}
 </style>

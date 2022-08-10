@@ -30,7 +30,7 @@
 	class="tile"
 	class:hidden={type === 'hidden'}
 	class:correct={type === 'correct'}
-	class:clickable={type === 'clickable'}
+	class:clickable={type === 'clickable' && clickable}
 >
 	<TileText {character} />
 </button>

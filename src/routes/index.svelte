@@ -62,13 +62,24 @@
 		<button on:click={startGame}>Play now!</button>
 	{:else if gameState === 'winner'}
 		<h1>You won!</h1>
-		<p>Great job mate</p>
-		<button on:click={startGame}>Play again!</button>
+		<div class="correct-word">
+			<p class="gray">The word was:</p>
+			<p class="word">{$correctWord}</p>
+		</div>
+		<div class="try-again">
+			<p>Try again</p>
+			<button on:click={startGame}>Play again!</button>
+		</div>
 	{:else if gameState === 'loser'}
 		<h1>You lost!</h1>
-		<p>{`The word was ${$correctWord}`}</p>
-		<p>Try again</p>
-		<button on:click={startGame}>Play again!</button>
+		<div class="correct-word">
+			<p class="gray">The correct word was:</p>
+			<p class="word">{$correctWord}</p>
+		</div>
+		<div class="try-again">
+			<p>Try again</p>
+			<button on:click={startGame}>Play again!</button>
+		</div>
 	{/if}
 </div>
 
@@ -90,5 +101,57 @@
 		height: 2px;
 		background-color: var(--color-empty);
 		border: none;
+	}
+
+	h1 {
+		font-size: 32px;
+		font-weight: 800;
+	}
+
+	.gray {
+		color: var(--color-gray);
+	}
+
+	.correct-word {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 2px;
+	}
+
+	.word {
+		font-size: 20px;
+		font-weight: 600;
+		color: var(--color-magic);
+		text-decoration: underline;
+	}
+
+	.try-again {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 8px;
+		margin-top: 32px;
+	}
+
+	button {
+		padding: 4px 12px;
+		border-radius: 1px;
+		background-color: var(--color-magic);
+		font-weight: 800;
+		font-size: 18px;
+		color: white;
+		cursor: pointer;
+		outline-color: transparent;
+
+		transition: all cubic-bezier(0.25, 0.46, 0.45, 0.94) 100ms;
+	}
+
+	button:hover {
+		outline: solid 1px white;
+	}
+
+	button:focus {
+		outline: none;
 	}
 </style>
