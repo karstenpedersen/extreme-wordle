@@ -115,6 +115,8 @@
 		display: flex;
 		flex-direction: column;
 		gap: min(1vw, 8px);
+		max-width: 500px;
+		margin-bottom: 100px;
 	}
 
 	.key-row {
