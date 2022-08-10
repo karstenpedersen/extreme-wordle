@@ -1,13 +1,30 @@
 <script lang="ts">
-	import words from 'an-array-of-english-words';
 	import { createEventDispatcher } from 'svelte';
-	import { correctWord, currentInput, guessedWords, guesses } from '../stores/gameStore';
+	import {
+		correctGuesses,
+		correctWord,
+		currentInput,
+		guessedWords,
+		guesses,
+		wordList
+	} from '../stores/gameStore';
+	import Key from './Key.svelte';
 
 	const dispatch = createEventDispatcher();
+
+	const keys = [
+		['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'],
+		['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l'],
+		['Enter', 'z', 'x', 'c', 'v', 'b', 'n', 'm', 'Backspace']
+	];
 
 	const handleKeydown = (event: KeyboardEvent) => {
 		const key = event.key;
 
+		handleInput(key);
+	};
+
+	const handleInput = (key: string) => {
 		if (key >= 'a' && key <= 'z') {
 			if ($currentInput.length >= $correctWord.length) return;
 
@@ -38,7 +55,7 @@
 				return;
 			}
 
-			if (!words.includes($currentInput)) {
+			if (!$wordList.includes($currentInput)) {
 				dispatch('incorect_not_a_word', {
 					message: 'Word cant be found in list'
 				});
@@ -59,6 +76,16 @@
 				});
 			}
 
+			$currentInput.split('').map((char, index) => {
+				if (char === $correctWord.charAt(index)) {
+					correctGuesses.update((progress) => {
+						var chars = progress.split('');
+						chars[index] = char;
+						return chars.join('');
+					});
+				}
+			});
+
 			$currentInput = '';
 		}
 	};
@@ -66,5 +93,34 @@
 
 <svelte:window on:keydown={handleKeydown} />
 
+<div class="keyboard">
+	{#each keys as keyRow}
+		<div class="key-row" style="--cols: {keyRow.length};">
+			{#each keyRow as key}
+				<Key
+					{key}
+					on:clicked={(e) => {
+						const key = e.detail.key;
+
+						handleInput(key);
+					}}
+				/>
+			{/each}
+		</div>
+	{/each}
+</div>
+
 <style>
+	.keyboard {
+		display: flex;
+		flex-direction: column;
+		gap: min(1vw, 8px);
+	}
+
+	.key-row {
+		display: grid;
+		grid-template-columns: repeat(var(--cols), 1fr);
+		min-height: 32px;
+		gap: min(1vw, 8px);
+	}
 </style>

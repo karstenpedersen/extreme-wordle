@@ -55,10 +55,20 @@ object {
 	padding: 0;
 	border-width: 0;
 	border-style: solid;
+	box-sizing: border-box;
 	border-color: theme('borderColor.DEFAULT', currentColor);
 }
 
 button:focus {
 	outline: 1px dotted;
 	outline: 5px auto -webkit-focus-ring-color;
+}
+
+button::-moz-focus-inner {
+	padding: 0;
+	border: 0;
+}
+
+a {
+	text-decoration: none;
 }
