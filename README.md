@@ -1,18 +1,10 @@
-# create-svelte
+# Extreme Wordle
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+A Wordle clone made with Svelte and TailwindCSS.
 
-## Creating a project
+To take a spin on the game, I decided to add words of varying lengths.
 
-If you're seeing this, you've probably already done this step. Congrats!
-
-```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
-```
+Hosted on Vercel.com.
 
 ## Developing
 
@@ -32,7 +24,3 @@ To create a production version of your app:
 ```bash
 npm run build
 ```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
